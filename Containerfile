@@ -34,7 +34,8 @@ RUN pacman -r "${BOOTC_ROOTFS_MOUNTPOINT}" --cachedir=/var/cache/pacman/pkg -Syy
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/*
 
-RUN pacman -Syu --noconfirm gnome-shell gnome-control-center gdm nautilus sushi gnome-backgrounds gnome-desktop gnome-menus gnome-sesion && \
+RUN pacman -Syu --noconfirm gnome-shell gnome-control-center gdm nautilus sushi gnome-backgrounds gnome-desktop gnome-menus gnome-sesion gnome-color-manager gnome-keyring \
+    gnome-user-share grilo-plugins gvfs* malcontent orca tecla xdg-desktop-portal-gnome xdg-user-dirs-gtk && \
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/* && \
   systemctl enable gdm
