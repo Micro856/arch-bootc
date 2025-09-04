@@ -28,17 +28,16 @@ RUN pacman -r "${BOOTC_ROOTFS_MOUNTPOINT}" --cachedir=/var/cache/pacman/pkg -Syy
   dbus-glib \
   glib2 \
   pacman \
-  gnome
   shadow && \
-  systemctl enable gdm && \
   cp /etc/pacman.conf "${BOOTC_ROOTFS_MOUNTPOINT}/etc/pacman.conf" && \
   cp -r /etc/pacman.d "${BOOTC_ROOTFS_MOUNTPOINT}/etc/" && \
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/*
 
-RUN pacman -Syu --noconfirm base-devel git rust ostree dracut whois && \
+RUN pacman -Syu --noconfirm base-devel gnome git rust ostree dracut whois && \
   pacman -S --clean && \
-  rm -rf /var/cache/pacman/pkg/*
+  rm -rf /var/cache/pacman/pkg/* && \
+  systemctl enable gdm
 
 RUN --mount=type=tmpfs,dst=/tmp cd /tmp && \
     git clone https://github.com/bootc-dev/bootc.git bootc && \
