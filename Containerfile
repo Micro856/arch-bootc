@@ -30,9 +30,9 @@ RUN pacman -r "${BOOTC_ROOTFS_MOUNTPOINT}" --cachedir=/var/cache/pacman/pkg -Syy
   pacman \
   gnome
   shadow && \
+  systemctl enable gdm && \
   cp /etc/pacman.conf "${BOOTC_ROOTFS_MOUNTPOINT}/etc/pacman.conf" && \
   cp -r /etc/pacman.d "${BOOTC_ROOTFS_MOUNTPOINT}/etc/" && \
-  systemctl enable gdm && \
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/*
 
