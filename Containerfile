@@ -34,10 +34,14 @@ RUN pacman -r "${BOOTC_ROOTFS_MOUNTPOINT}" --cachedir=/var/cache/pacman/pkg -Syy
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/*
 
-RUN pacman -Syu --noconfirm base-devel gnome git rust ostree dracut whois && \
+RUN pacman -Syu --noconfirm gnome-shell gnome-control-center gdm nautilus sushi && \
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/* && \
   systemctl enable gdm
+
+RUN pacman -Syu --noconfirm base-devel git rust ostree dracut whois && \
+  pacman -S --clean && \
+  rm -rf /var/cache/pacman/pkg/*
 
 RUN --mount=type=tmpfs,dst=/tmp cd /tmp && \
     git clone https://github.com/bootc-dev/bootc.git bootc && \
