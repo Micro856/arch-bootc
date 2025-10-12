@@ -20,6 +20,8 @@ RUN pacman -Syyuu --noconfirm \
       glib2 \
       ostree \
       shadow \
+      grub \
+      efibootmgr \
       ${DEV_DEPS} && \
   pacman -S --clean && \
   rm -rf /var/cache/pacman/pkg/*
