@@ -32,7 +32,7 @@ RUN --mount=type=tmpfs,dst=/tmp --mount=type=tmpfs,dst=/root \
     make install-initramfs-dracut && \
     git clone https://github.com/coreos/bootupd.git /tmp/bootupd && \
     cd /tmp/bootupd && \
-    cargo build --release --bins --features systemd-boot && \
+    cargo build --release --bins && \
     make install
 
 # Setup a temporary root passwd (changeme) for dev purposes
