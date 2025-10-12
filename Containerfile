@@ -30,7 +30,7 @@ RUN --mount=type=tmpfs,dst=/tmp --mount=type=tmpfs,dst=/root \
     CARGO_FEATURES="composefs-backend" make bin && \
     make install-all && \
     make install-initramfs-dracut && \
-    git clone https://github.com/p5/coreos-bootupd.git -b sdboot-support /tmp/bootupd && \
+    git clone https://github.com/coreos/bootupd.git /tmp/bootupd && \
     cd /tmp/bootupd && \
     cargo build --release --bins --features systemd-boot && \
     make install
