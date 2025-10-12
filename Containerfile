@@ -47,15 +47,13 @@ RUN sh -c 'export KERNEL_VERSION="$(basename "$(find /usr/lib/modules -maxdepth 
     dracut --force --no-hostonly --reproducible --zstd --verbose --kver "$KERNEL_VERSION"  "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"'
 
 RUN rm -rf /var /boot /home /root /usr/local /srv && \
-    mkdir -p /var /boot /sysroot && \
+    mkdir -p /var && \
     ln -s /var/home /home && \
     ln -s /var/roothome /root && \
     ln -s /var/srv /srv && \
     ln -s sysroot/ostree ostree && \
-    ln -s /var/usrlocal /usr/local
-
-# Update useradd default to /var/home instead of /home for User Creation
-RUN sed -i 's|^HOME=.*|HOME=/var/home|' "/etc/default/useradd"
+    ln -s /var/usrlocal /usr/local && \
+    mkdir -p /sysroot /boot
 
 # Necessary for `bootc install`
 RUN mkdir -p /usr/lib/ostree && \
